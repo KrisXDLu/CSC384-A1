@@ -1,0 +1,9 @@
+1. You need to made a 3d matrix which the dimension is storage number x state height x state width, which is only made once for each sokoban problem.  This will save a lot of time. 
+
+2. Use a BFS algorithm that start from one storage coordinate and with each move the cost add one, the cost is put into the storage's corresponding matrix entry.  Then repeat for each matrix.
+
+3. I used the matrix to calculate the cost between each space to storage and the coordinate in the state with obstacles are set to a really large number in the matrix, but the storage(which is the start point) is set to a large number too, so we won't go back to storage which would result in a loop when using BFS.  
+
+4. After the matrix is made, with each call to the heristic function, we only loop through the box the find the right storage(if there is restrictions), then go to that storage's 2d matrix from the 3d matrix, to find the box's cost.
+
+5. Need to watch out for the storage when looping through the box.  When the box is on a storage, the box's cost is the number we set for storage, which is really large.  Because we are looping through storage in the for loop for box to find the minimum cost, if a cost we find for the box is equal to the number we set for the storage, the box is at destination, in that case, we would set the current cost to 0.
